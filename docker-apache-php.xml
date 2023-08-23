@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Apache-PHP</Name>
+  <Repository>evilalmus/docker_apache_php:latest</Repository>
+  <Registry>https://hub.docker.com/r/evilalmus/docker_apache_php</Registry>
+  <Network>g33kdock</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/evilalmus/docker-apahe-php/issues</Support>
+  <Project>https://github.com/evilalmus/docker-apahe-php/</Project>
+  <Overview>Apache based web server with basic PHP web server capabilities with the addition of php5-gd, php5-sqlite, php5-intl&#xD;
+&#xD;
+&#xD;
+    Directions:&#xD;
+&#xD;
+    /config : this path is used to store the configuration and the SSL certs files of the reverse proxy.&#xD;
+&#xD;
+    /web : this path is the web directory&#xD;
+&#xD;
+    /web/adminer : adminer path inside the web directory&#xD;
+&#xD;
+    /logs : this path is the logs directory&#xD;
+&#xD;
+&#xD;
+&#xD;
+I have added custom Crontab functionality.To enable Cron jobs, edit the file crons.conf in folder /config. &#xD;
+&#xD;
+Add as many tasks as you need, save the file, and restart the container.&#xD;
+&#xD;
+</Overview>
+  <Category>Network:Web</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/chvb/docker-templates/master/chvb/apache-php.xml</TemplateURL>
+  <Icon>https://github.com/evilalmus/docker-apahe-php/blob/d6273ad0b5c15ac4411654ef1deb10e27b13e7b7/apache-php.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1692816770</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Host Port 1" Target="80" Default="8005" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">8005</Config>
+  <Config Name="Host Port 2" Target="443" Default="8443" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">8444</Config>
+  <Config Name="Host Path 2" Target="/web" Default="/mnt/disks/SSD/www/" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Host Path 3" Target="/logs" Default="/mnt/disks/SSD/appdata/apache-php/logs/" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Host Path 4" Target="/etc/localtime" Default="/etc/localtime" Mode="ro" Description="" Type="Path" Display="always" Required="true" Mask="false">/etc/localtime</Config>
+  <Config Name="AppData Config Path" Target="/config" Default="/mnt/cache/appdata/Apache-PHP" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"/>
+</Container>
+COMMAND:
+/usr/local/emhttp/plugins/dynamix.docker.manager/scripts/docker create --name='Apache-PHP' --net='g33kdock' -e TZ="America/Los_Angeles" -e HOST_OS="Unraid" -e HOST_HOSTNAME="g33kbar" -e HOST_CONTAINERNAME="Apache-PHP" -l net.unraid.docker.managed=dockerman -l net.unraid.docker.webui='http://[IP]:[PORT:80]/' -l net.unraid.docker.icon='https://github.com/evilalmus/docker-apahe-php/blob/d6273ad0b5c15ac4411654ef1deb10e27b13e7b7/apache-php.png' -p '8005:80/tcp' -p '8444:443/tcp' -v '/mnt/disks/SSD/www/':'/web':'rw' -v '/mnt/disks/SSD/appdata/apache-php/logs/':'/logs':'rw' -v '/etc/localtime':'/etc/localtime':'ro' -v '/mnt/cache/appdata/Apache-PHP':'/config':'rw' 'evilalmus/docker_apache_php:latest' 
