@@ -47,5 +47,3 @@ Add as many tasks as you need, save the file, and restart the container.&#xD;
   <Config Name="Host Path 4" Target="/etc/localtime" Default="/etc/localtime" Mode="ro" Description="" Type="Path" Display="always" Required="true" Mask="false">/etc/localtime</Config>
   <Config Name="AppData Config Path" Target="/config" Default="/mnt/cache/appdata/Apache-PHP" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>
-COMMAND:
-/usr/local/emhttp/plugins/dynamix.docker.manager/scripts/docker create --name='Apache-PHP' --net='g33kdock' -e TZ="America/Los_Angeles" -e HOST_OS="Unraid" -e HOST_HOSTNAME="g33kbar" -e HOST_CONTAINERNAME="Apache-PHP" -l net.unraid.docker.managed=dockerman -l net.unraid.docker.webui='http://[IP]:[PORT:80]/' -l net.unraid.docker.icon='https://github.com/evilalmus/docker-apahe-php/blob/d6273ad0b5c15ac4411654ef1deb10e27b13e7b7/apache-php.png' -p '8005:80/tcp' -p '8444:443/tcp' -v '/mnt/disks/SSD/www/':'/web':'rw' -v '/mnt/disks/SSD/appdata/apache-php/logs/':'/logs':'rw' -v '/etc/localtime':'/etc/localtime':'ro' -v '/mnt/cache/appdata/Apache-PHP':'/config':'rw' 'evilalmus/docker_apache_php:latest' 
